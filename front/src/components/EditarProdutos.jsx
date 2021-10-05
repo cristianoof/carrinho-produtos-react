@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 
-function Carrinho ({carrinho, remove, limparCarrinho, aumentarQuantidade, diminuiQuantidade}) {
+function EditarProdutos ({carrinho, remove, limparCarrinho, aumentarQuantidade, diminuiQuantidade}) {
  
   const totalCarrinho = Object.keys(carrinho).reduce((prev, curr) =>{
     return prev + carrinho[curr].qtd * carrinho[curr].item.precoVenda
@@ -16,7 +16,7 @@ function Carrinho ({carrinho, remove, limparCarrinho, aumentarQuantidade, diminu
   return(
     <main>
       <div className="container">
-        <h2>Carrinho de Produtos</h2>
+        <h2>Editar Produtos</h2>
         {totalItens === 0 ? "" :
         <div className="total-carrinho">
           <p>Total Itens ({totalItens})</p>
@@ -60,4 +60,4 @@ function Carrinho ({carrinho, remove, limparCarrinho, aumentarQuantidade, diminu
   )
 }
 
-export default Carrinho
+export default EditarProdutos

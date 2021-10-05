@@ -12,7 +12,7 @@ function Header ({carrinho}) {
         <h1>Loja.<b>Teste</b></h1>
         <div>
           <Link to="/">Home</Link>
-          <Link to="/cadastro">Cadastrar</Link>
+          <Link to="/produtos/cadastrar">Cadastrar</Link>
           <Link to="carrinho">Carrinho {totalItens === 0 ? "" : totalItens}</Link>
         </div>
       </div>

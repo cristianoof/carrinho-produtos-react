@@ -18,20 +18,22 @@ function ListaProdutos({add}) {
   }, [])
 
   return (
-    <div className="container">
-      <h2>Listagem Produtos</h2>
-      <div className="lista-produtos">
-        {produtos.map((produto) => (
-          <div key={produto.id} className={"produto"}>
-            <div className={"foto"}>Foto</div>
-            <h3>{produto.nome}</h3>
-            <p>{produto.descricao}</p>
-            <span>{produto.precoVenda.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
-            <button onClick={() => add(produto)}>Adicionar ao Carrinho</button>
-          </div>
-        ))}
+    <main>
+      <div className="container">
+        <h2>Listagem Produtos</h2>
+        <div className="lista-produtos">
+          {produtos.map((produto) => (
+            <div key={produto.id} className={"produto"}>
+              <img className={"foto"} src={`http://localhost:5000/produtos-imagens/${produto.id}.jpg`} alt={produto.nome}/>
+              <h3>{produto.nome}</h3>
+              <p>{produto.descricao}</p>
+              <span>{produto.precoVenda.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
+              <button onClick={() => add(produto)}>Adicionar ao Carrinho</button>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </main>
   )
 }
 

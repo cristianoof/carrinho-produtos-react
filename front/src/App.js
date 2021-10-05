@@ -4,6 +4,7 @@ import CadastroProdutos from './components/CadastroProdutos'
 import Header from './components/Header'
 import ListaProdutos from './components/ListaProdutos'
 import Carrinho from './components/Carrinho'
+import EditarProdutos from './components/EditarProdutos'
 
 
 function App() {
@@ -62,8 +63,11 @@ function App() {
         <Route exact path='/'>
           <ListaProdutos add={handleAddItemCarrinho}/>
         </Route>
-        <Route path='/cadastro'>
+        <Route path='/produtos/cadastrar'>
           <CadastroProdutos />
+        </Route>
+        <Route path='/produtos/editar'>
+          <EditarProdutos />
         </Route>
         <Route path='/carrinho'>
           <Carrinho carrinho={carrinho} add={handleAddItemCarrinho} remove={handleRemoveItemCarrinho} limparCarrinho={limparCarrinho} aumentarQuantidade={aumentarQuantidade} diminuiQuantidade={diminuiQuantidade}/>
