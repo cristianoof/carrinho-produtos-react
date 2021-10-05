@@ -23,8 +23,9 @@ function ListaProdutos({add}) {
         <h2>Listagem Produtos</h2>
         <div className="lista-produtos">
           {produtos.map((produto) => (
-            <div key={produto.id} className={"produto"}>
-              <img className={"foto"} src={`http://localhost:5000/produtos-imagens/${produto.id}.jpg`} alt={produto.nome}/>
+            produto.precoVenda === 0 || produto.precoVenda === "" || produto.precoCusto === 0 || produto.precoCusto === "" ? "" :
+            <div key={produto.id} className={"card-produto-home"}>
+              <img className={"foto-produto"} src={`http://localhost:5000/produtos-imagens/${produto.id}.jpg`} alt={produto.nome}/>
               <h3>{produto.nome}</h3>
               <p>{produto.descricao}</p>
               <span>{produto.precoVenda.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>

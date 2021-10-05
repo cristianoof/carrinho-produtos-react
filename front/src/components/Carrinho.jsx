@@ -28,18 +28,20 @@ function Carrinho ({carrinho, remove, limparCarrinho, aumentarQuantidade, diminu
 
         <table>
           {totalItens === 0 ? "" :
-          <tr>
-            <th colspan="2">Produto</th>
-            <th>Quantidade</th>
-            <th>Valor Unit.</th>
-            <th>SubTotal</th>
-          </tr>}
+          <thead> 
+            <tr>
+              <th colspan="2">Produto</th>
+              <th>Quantidade</th>
+              <th>Valor Unit.</th>
+              <th>SubTotal</th>
+            </tr>
+          </thead>}
           {Object.keys(carrinho).map((item, i) => {
             return (
               <tr className="itens-carrinho" key={carrinho[item].item.id}>
-                <td style={{width: "110px"}}><img className="foto" style={{ width: "100px", height: "100px" }} src={`http://localhost:5000/produtos-imagens/${carrinho[item].item.id}.jpg`} alt={carrinho[item].item.nome}/></td>
-                <td><b>{carrinho[item].item.nome}</b><br/>{carrinho[item].item.descricao}</td>
-                <td>
+                <td id="img"><img className="foto-produto-small" src={`http://localhost:5000/produtos-imagens/${carrinho[item].item.id}.jpg`} alt={carrinho[item].item.nome}/></td>
+                <td id="descricao"><b>{carrinho[item].item.nome}</b><br/><p className="itens-carrinho-descricao">{carrinho[item].item.descricao}</p></td>
+                <td id="quantidade">
                   <div className="flex-quantidade">
                     <a href onClick={() => diminuiQuantidade(carrinho[item].item)}>-</a>
                     <p>{carrinho[item].qtd}</p>
@@ -49,8 +51,8 @@ function Carrinho ({carrinho, remove, limparCarrinho, aumentarQuantidade, diminu
                     <button onClick={() => remove(carrinho[item].item.id)}>Remover Item</button>
                   </div>
                 </td>
-                <td style={{ textAlign: "center" }} className="preco">{carrinho[item].item.precoVenda.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
-                <td className="preco"><b>{(carrinho[item].item.precoVenda * carrinho[item].qtd).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</b></td>
+                <td id="valor-unitario" className="preco"><span>Valor Unit.</span>{carrinho[item].item.precoVenda.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
+                <td id="subtotal" className="preco"><span>Subtotal</span><b>{(carrinho[item].item.precoVenda * carrinho[item].qtd).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</b></td>
               </tr>
             )
           })}

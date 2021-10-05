@@ -12,9 +12,8 @@ h2 {
 .header {
   position: fixed;
   top: 0;
-  box-sizing: border-box;
   background: white;
-  height: 90px;
+  height: 100px;
   width: 100%;
   border-bottom: 4px solid var(--cor-primaria);
   margin-bottom: 20px;
@@ -22,9 +21,10 @@ h2 {
 
 .itens-header {
   width: 90%;
-  height: 90px;
+  height: 100px;
   margin: auto;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   color: black;
@@ -43,7 +43,7 @@ h2 {
   padding: 7px;
   border: var(--cor-primaria) solid 2px;
   border-radius: var(--br-padrao);
-  width: 90px;
+  width: 120px;
   text-align: center;
 }
 
@@ -62,15 +62,14 @@ main {
 
 /* Página de Produtos */
 .lista-produtos {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  margin: 20px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 25px;
 }
 
-.produto {
-  margin: 15px;
+.card-produto-home {
   padding: 5px;
-  width: 220px;
   height: auto;
   min-height: 240px;
   border-radius: 3px;
@@ -82,27 +81,34 @@ main {
   justify-content: space-between;
 }
 
-.foto {
+.foto-produto {
   align-self: center;
   width: 90%;
   height: auto;
   border-radius: var(--br-padrao);
 }
 
-.produto h3 {
+.foto-produto-small {
+  align-self: center;
+  border-radius: var(--br-padrao);
+  width: 100px;
+  height: 100px;
+}
+
+.card-produto-home h3 {
   font-size: 1rem;
 }
 
-.produto p {
+.card-produto-home p {
   font-size: 0.8rem;
 }
 
-.produto span {
+.card-produto-home span {
   font-weight: bold;
   color: var(--cor-primaria);
 }
 
-.produto button {
+.card-produto-home button {
   padding: 7px;
   border: none;
   border-radius: 3px;
@@ -112,8 +118,8 @@ main {
   margin-top: 10px;
 }
 
-.produto button:hover {
-  opacity: 0.9;
+button:hover {
+  opacity: 0.8;
 }
 
 /* Página de Cadastro Produtos */
@@ -138,7 +144,7 @@ main {
   background: #3CB371;
   cursor: pointer;
   color: white;
-  margin-top: 10px;
+  margin: 10px 0;
   font-size: 1rem;
 }
 
@@ -146,7 +152,7 @@ main {
   opacity: 0.9;
 }
 
-.sucesso {
+.sucesso-cadastro {
   display: block;
   margin: 10px 0;
   padding: 5px;
@@ -156,13 +162,24 @@ main {
   width: 51%;
 }
 
+.erro-cadastro {
+  display: block;
+  margin: 10px 0;
+  padding: 5px;
+  color: red;
+  border: red 1px solid;
+  border-radius: var(--br-padrao);
+  width: 51%;
+}
+
 /* Página do Carrinho */
 .total-carrinho {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   background: white;
   align-items: center;
-  height: 40px;
+  height: auto;
   padding: 15px;
   margin-top: 10px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -174,7 +191,7 @@ main {
   border: 1px solid var(--cor-primaria);
   border-radius: var(--br-padrao);
   padding: 10px;
-  width: 25%;
+  width: 28%;
 }
 
 .total-carrinho p {
@@ -193,38 +210,12 @@ main {
   cursor: pointer;
 }
 
-button:hover {
-  opacity: 0.9;
-}
-
 .carrinho-vazio {
   display: flex;
   justify-content: center;
   margin-top: 150px;
   font-size: 2rem;
   color: var(--cor-textos);
-}
-
-.header-lista-itens-carrinho {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 30px;
-  color: var(--cor-textos);
-}
-
-.header-lista-itens-carrinho h4:first-child {
-  width: 30%;
-  text-align: center;
-}
-
-.lista-itens-carrinho {
-  display: flex;
-  flex-direction: column;
-}
-
-.lista-itens-carrinho span {
-  font-size: 1.3rem;
-  width: 250px;
 }
 
 table {
@@ -275,3 +266,117 @@ td {
   font-size: 1.2rem;
 }
 
+.preco span {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .itens-header {
+    justify-content: center;
+  }
+
+  .itens-header a {
+    font-size: 0.8rem;
+    padding: 5px;
+    width: 90px;
+  }
+
+  .itens-header a:last-child {
+    margin-right: 5px;
+  }
+
+  .container {
+    width: 95%;
+  }
+
+  .card-produto-home {
+    width: 100%;
+  }
+
+  .foto-produto {
+    width: 60%;
+  }
+
+  .formulario input, textarea, label{
+    width: 90%;
+    margin: auto;
+  }
+  
+  .btn-cadastrar {
+    width: 90%;
+    margin-left: 5%;
+  }
+
+  /* Página do Carrinho */
+  .total-carrinho {
+    height: auto;
+  }
+
+  .total-carrinho p:first-child {
+    width: 39%;
+  }
+
+  .total-carrinho p {
+    width: 59%;
+    margin-bottom: 5px;
+    font-size: 0.8rem;
+  }
+
+  .total-carrinho h3 {
+    width: 100%;
+    margin-bottom: 5px;
+    font-size: 1rem;
+  }
+
+  .total-carrinho button {
+    padding: 10px;
+    font-size: 0.8rem;
+    margin: auto;
+  }
+  
+  .foto-produto-small {
+    width: 80%;
+    height: auto;
+  }
+  
+  thead {
+    display: none;
+  }
+
+  tr {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+  }
+
+  #img {
+    width: 25%;
+  }
+
+  #descricao {
+    width: 75%;
+  }
+
+  #quantidade, #valor-unitario, #subtotal {
+    width: 33%;
+  }
+
+  td {
+    font-size: 0.8rem;
+  }
+
+  .flex-quantidade button {
+    font-size: 0.7rem;
+  }
+  
+  .itens-carrinho .preco {
+    font-size: 0.8rem;
+  }
+
+  .preco span {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+}

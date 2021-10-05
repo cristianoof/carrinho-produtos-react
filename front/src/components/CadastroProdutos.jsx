@@ -11,11 +11,8 @@ function CadastroProdutos() {
   const [quantidadeEstoque, setQuantidadeEstoque] = useState()
   const [imagemProduto, setImagemProduto] = useState('')
   
-  //const valorMargem = precoCusto * (margem / 100)
-  //const precoDeVenda = parseFloat(valorMargem) + parseFloat(precoCusto)  
-  
   const [sucessoCadastro, setSucessoCadastro] = useState(false)
-
+  const [erroCadastro, setErroCadastro] = useState(false)
   
   function cadastrar({produto}){
     var myHeaders = new Headers()
@@ -40,38 +37,46 @@ function CadastroProdutos() {
       .then(response => response.json())
       .then((result) => {
         if(result.id){
-          
           var idImagem = result.id
           var formdata = new FormData();
-          formdata.append("arquivo", imagemProduto, `${idImagem}.jpg`);
+          formdata.append("arquivo", imagemProduto, `${idImagem}.jpg`)
 
           var requestOptionsImg = {
             method: 'POST',
             body: formdata,
             redirect: 'follow'
-          };
+          }
 
           fetch("http://localhost:5000/api/Produtos/upload-imagem-produto", requestOptionsImg)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-            console.log('result: ', result.id)
-            /* .then((response) => {
+            .then((response) => {
               if(response.ok){
                 setSucessoCadastro(true)
-                console.log('response: ', response)
+                setNome("")
+                setDescricao("")
+                setPrecoCusto(0)
+                setMargem(0)
+                setPrecoVenda(0)
+                setQuantidadeEstoque(0)
+                setImagemProduto('')
               }
-            }) */
+            })
+            .catch(error => console.log('error', error))
         }
       })
-      .catch(error => console.log('error', error));
+      .catch((error) => {
+        console.log('error', error)
+        if(error){
+          setErroCadastro(true)
+        }
+      })
   }
 
   return (
     <main>
       <div className="container">
         <h2>Cadastro de Produtos</h2>
-        {sucessoCadastro ? <span className="sucesso">Cadastro realizado com sucesso!</span> : ""}
+        {sucessoCadastro ? <span className="sucesso-cadastro">Cadastro realizado com sucesso!</span> : ""}
+        {erroCadastro ? <span className="erro-cadastro">Ocorreu um erro, tente mais tarde!</span> : ""}
         <div>
           <Link to="/produtos/editar">Editar Produto</Link>
         </div>
@@ -137,7 +142,6 @@ function CadastroProdutos() {
               }}
               onBlur={(event) => {
                 if(precoVenda !== 0){
-                  console.log('preço zerado!')
                   let tmpMargem = 0
                   tmpMargem = ((precoVenda - precoCusto) / precoCusto) * 100
                   setMargem(tmpMargem.toFixed(2))
