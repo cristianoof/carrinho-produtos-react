@@ -261,10 +261,25 @@ td {
   justify-content: center;
 }
 
+.flex-quantidade p {
+  display: block;
+  margin: 12px;
+  font-weight: bold;
+}
+
+.flex-quantidade-btn {
+  background: none;
+  border: 1px solid var(--cor-primaria);
+  border-radius: var(--br-padrao);
+  width: 25px;
+  height: 25px;
+}
+
 .flex-quantidade button {
   cursor: pointer;
   padding: 3px;
 }
+
 
 .itens-carrinho .preco {
   text-align: center;
@@ -275,14 +290,6 @@ td {
   display: none;
 }
 
-@keyframes show {
-  from {
-    top: 0;
-  }
-  to {
-    top: 100px;
-  }
-}
 
 @media (max-width: 1100px) {
   /* Página do Carrinho */  
@@ -309,73 +316,8 @@ td {
   }
 }
 
-@media (max-width: 600px) {
-  /* Header */
-  .itens-header {
-    justify-content: center;
-  }
-
-  .itens-header a {
-    font-size: 0.8rem;
-    padding: 5px;
-    width: 90px;
-  }
-
-  .itens-header a:last-child {
-    margin-right: 5px;
-  }
-
-  .container {
-    width: 95%;
-  }
-
-  /* Página de Produtos */
-  .card-produto-home {
-    width: 100%;
-  }
-
-  .foto-produto {
-    width: 60%;
-  }
-
-  /* Página de Cadastro Produtos */
-  .formulario-cadastro-produto input, textarea, label{
-    width: 100%;
-    margin: auto;
-  }
-  
-  .btn-cadastrar {
-    width: 100%;
-  }
-
-  /* Página do Carrinho */
-  .total-carrinho p:first-child {
-    width: 39%;
-  }
-
-  .total-carrinho p {
-    width: 59%;
-    margin-bottom: 5px;
-    font-size: 0.8rem;
-  }
-
-  .total-carrinho h3 {
-    width: 100%;
-    margin-bottom: 5px;
-    font-size: 1rem;
-  }
-
-  .total-carrinho button {
-    padding: 10px;
-    font-size: 0.8rem;
-    margin: auto;
-  }
-  
-  .foto-produto-small {
-    width: 80%;
-    height: auto;
-  }
-  
+@media (max-width: 780px) {
+  /* Página do Carrinho */  
   thead {
     display: none;
   }
@@ -416,4 +358,50 @@ td {
     margin-bottom: 15px;
     font-weight: bold;
   }
+}
+
+@media (max-width: 600px) {
+  /* Header */
+  .itens-header {
+    justify-content: center;
+  }
+
+  .itens-header a {
+    font-size: 0.8rem;
+    padding: 5px;
+    width: 90px;
+  }
+
+  .itens-header a:last-child {
+    margin-right: 5px;
+  }
+
+  .container {
+    width: 95%;
+  }
+
+  /* Página de Produtos */
+  .card-produto-home {
+    width: 100%;
+  }
+
+  .foto-produto {
+    width: 60%;
+  }
+
+  /* Página de Cadastro Produtos */
+  .formulario-cadastro-produto input, .formulario-cadastro-produto textarea{
+    width: 100%;
+    margin: auto;
+  }
+  
+  .btn-cadastrar {
+    width: 100%;
+  }
+
+  /* Página do Carrinho */
+  .foto-produto-small {
+    width: 80%;
+    height: auto;
+  }  
 }

@@ -26,16 +26,17 @@ function Carrinho ({carrinho, remove, limparCarrinho, aumentarQuantidade, diminu
         </div>}
         {totalItens === 0 ? <div className="carrinho-vazio"><span>Carrinho vazio...</span></div> : ""}
 
+        {totalItens === 0 ? "" :
         <table>
-          {totalItens === 0 ? "" :
           <thead> 
             <tr>
-              <th colspan="2">Produto</th>
+              <th colSpan="2">Produto</th>
               <th>Quantidade</th>
               <th>Valor Unit.</th>
               <th>SubTotal</th>
             </tr>
-          </thead>}
+          </thead>
+          <tbody>
           {Object.keys(carrinho).map((item, i) => {
             return (
               <tr className="itens-carrinho" key={carrinho[item].item.id}>
@@ -43,9 +44,9 @@ function Carrinho ({carrinho, remove, limparCarrinho, aumentarQuantidade, diminu
                 <td id="descricao"><b>{carrinho[item].item.nome}</b><br/><p className="itens-carrinho-descricao">{carrinho[item].item.descricao}</p></td>
                 <td id="quantidade">
                   <div className="flex-quantidade">
-                    <a href onClick={() => diminuiQuantidade(carrinho[item].item)}>-</a>
+                    <button className="flex-quantidade-btn" onClick={() => diminuiQuantidade(carrinho[item].item)}>-</button>
                     <p>{carrinho[item].qtd}</p>
-                    <a href onClick={() => aumentarQuantidade(carrinho[item].item)}>+</a>
+                    <button className="flex-quantidade-btn" onClick={() => aumentarQuantidade(carrinho[item].item)}>+</button>
                   </div>
                   <div className="flex-quantidade">
                     <button onClick={() => remove(carrinho[item].item.id)}>Remover Item</button>
@@ -56,7 +57,8 @@ function Carrinho ({carrinho, remove, limparCarrinho, aumentarQuantidade, diminu
               </tr>
             )
           })}
-        </table>
+          </tbody>
+        </table>}
       </div>
     </main>
   )
