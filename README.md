@@ -4,10 +4,12 @@
 * Ter o Node instalado na Versão 14^
 * Ter o gerenciador de pacotes Yarn instalado na Versão 1.22^
 
+Npm install
+
 ## Dotnet - Backend
 
 Abrir a pasta **WebApi/WebApi** no terminal e digitar o comando:
-### dotnet run
+### `dotnet run`
 
 *O servidor subirá no enderço http://localhost:5000*
 
@@ -15,7 +17,7 @@ Abrir a pasta **WebApi/WebApi** no terminal e digitar o comando:
 ## React - Frontend
 
 Abrir a pasta **front** no terminal e digitar o comando:
-### yarn start
+### `yarn start`
 
 *A aplicação subirá no enderço http://localhost:3000* você poderá acessá-la no browser.
 

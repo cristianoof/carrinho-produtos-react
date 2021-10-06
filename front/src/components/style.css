@@ -4,10 +4,6 @@
   --br-padrao: 5px;
 }
 
-h2 {
-  color: var(--cor-textos);
-}
-
 /* Header */
 .header {
   position: fixed;
@@ -58,6 +54,11 @@ main {
 .container {
   width: 90%;
   margin: auto;
+}
+
+.container h2 {
+  color: var(--cor-textos);
+  margin-bottom: 10px;
 }
 
 /* Página de Produtos */
@@ -123,21 +124,25 @@ button:hover {
 }
 
 /* Página de Cadastro Produtos */
-.formulario {
+.formulario-cadastro-produto {
   display: flex;
   flex-direction: column;
   margin: 10px 0;
 }
 
-.formulario input, textarea{
+.formulario-cadastro-produto input, .formulario-cadastro-produto textarea{
   padding: 10px;
   width: 50%;
   border-radius: var(--br-padrao);
   border: solid 1px rgb(182, 182, 182);
 }
 
+.formulario-cadastro-produto span {
+  color: red;
+}
+
 .btn-cadastrar {
-  width: 52%;
+  width: 50%;
   padding: 10px;
   border: none;
   border-radius: var(--br-padrao);
@@ -270,7 +275,42 @@ td {
   display: none;
 }
 
+@keyframes show {
+  from {
+    top: 0;
+  }
+  to {
+    top: 100px;
+  }
+}
+
+@media (max-width: 1100px) {
+  /* Página do Carrinho */  
+  .total-carrinho p:first-child {
+    width: 39%;
+  }
+  
+  .total-carrinho p {
+    width: 59%;
+    margin-bottom: 5px;
+    font-size: 1rem;
+  }
+  
+  .total-carrinho h3 {
+    width: 100%;
+    margin-bottom: 5px;
+    font-size: 1rem;
+  }
+  
+  .total-carrinho button {
+    padding: 10px;
+    font-size: 1rem;
+    margin: auto;
+  }
+}
+
 @media (max-width: 600px) {
+  /* Header */
   .itens-header {
     justify-content: center;
   }
@@ -289,6 +329,7 @@ td {
     width: 95%;
   }
 
+  /* Página de Produtos */
   .card-produto-home {
     width: 100%;
   }
@@ -297,21 +338,17 @@ td {
     width: 60%;
   }
 
-  .formulario input, textarea, label{
-    width: 90%;
+  /* Página de Cadastro Produtos */
+  .formulario-cadastro-produto input, textarea, label{
+    width: 100%;
     margin: auto;
   }
   
   .btn-cadastrar {
-    width: 90%;
-    margin-left: 5%;
+    width: 100%;
   }
 
   /* Página do Carrinho */
-  .total-carrinho {
-    height: auto;
-  }
-
   .total-carrinho p:first-child {
     width: 39%;
   }

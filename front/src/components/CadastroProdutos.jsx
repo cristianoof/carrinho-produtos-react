@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import './style.css'
 
 function CadastroProdutos() {
   const [nome, setNome] = useState("")
   const [descricao, setDescricao] = useState("")
-  const [precoCusto, setPrecoCusto] = useState()
-  const [margem, setMargem] = useState()
-  const [precoVenda, setPrecoVenda] = useState(0)
-  const [quantidadeEstoque, setQuantidadeEstoque] = useState()
+  const [precoCusto, setPrecoCusto] = useState('')
+  const [margem, setMargem] = useState('')
+  const [precoVenda, setPrecoVenda] = useState('')
+  const [quantidadeEstoque, setQuantidadeEstoque] = useState('')
   const [imagemProduto, setImagemProduto] = useState('')
+
+  const [validacaoPCusto, setValidacaoPCusto] = useState(true)
+  const [validacaoPVenda, setValidacaoPVenda] = useState(true)
+  const [validacaoQuantidade, setValidacaoQuantidade] = useState(true)
   
   const [sucessoCadastro, setSucessoCadastro] = useState(false)
   const [erroCadastro, setErroCadastro] = useState(false)
@@ -53,10 +56,10 @@ function CadastroProdutos() {
                 setSucessoCadastro(true)
                 setNome("")
                 setDescricao("")
-                setPrecoCusto(0)
-                setMargem(0)
-                setPrecoVenda(0)
-                setQuantidadeEstoque(0)
+                setPrecoCusto('')
+                setMargem('')
+                setPrecoVenda('')
+                setQuantidadeEstoque('')
                 setImagemProduto('')
               }
             })
@@ -77,9 +80,6 @@ function CadastroProdutos() {
         <h2>Cadastro de Produtos</h2>
         {sucessoCadastro ? <span className="sucesso-cadastro">Cadastro realizado com sucesso!</span> : ""}
         {erroCadastro ? <span className="erro-cadastro">Ocorreu um erro, tente mais tarde!</span> : ""}
-        <div>
-          <Link to="/produtos/editar">Editar Produto</Link>
-        </div>
         <form 
           onSubmit={(event) => {
             event.preventDefault()
@@ -90,10 +90,21 @@ function CadastroProdutos() {
               "precoCusto": parseFloat(precoCusto),
               "quantidadeEstoque": parseInt(quantidadeEstoque)
             }
-            cadastrar({produto})
+            if(produto.precoCusto === 0 || produto.precoCusto === ""){
+              setValidacaoPCusto(false)
+            }
+            else if(produto.precoVenda === 0 || produto.precoVenda === ""){
+              setValidacaoPVenda(false)
+            }
+            else if(produto.quantidadeEstoque === 0 || produto.quantidadeEstoque === ""){
+              setValidacaoQuantidade(false)
+            }
+            else{
+              cadastrar({produto})
+            }
           }}
         >
-          <div className="formulario">
+          <div className="formulario-cadastro-produto">
             <label>Nome do Produto</label>
             <input
               value={nome}
@@ -111,7 +122,7 @@ function CadastroProdutos() {
             />
           </div>
 
-          <div className="formulario">
+          <div className="formulario-cadastro-produto">
             <label>Descrição do Produto</label>
             <textarea
               value={descricao}
@@ -128,10 +139,11 @@ function CadastroProdutos() {
               }}
             />
           </div>
-
-          <div className="formulario">  
+          
+          <div className="formulario-cadastro-produto">  
             <label>Preço de Custo</label>
             <input
+              value={precoCusto}
               type="number" 
               step="0.01"
               name="precoCusto" 
@@ -141,16 +153,23 @@ function CadastroProdutos() {
                 setPrecoCusto(event.target.value)
               }}
               onBlur={(event) => {
-                if(precoVenda !== 0){
-                  let tmpMargem = 0
-                  tmpMargem = ((precoVenda - precoCusto) / precoCusto) * 100
+                let tmpMargem = 0
+                tmpMargem = ((precoVenda - precoCusto) / precoCusto) * 100
+                if(tmpMargem > 0){
                   setMargem(tmpMargem.toFixed(2))
+                }
+                if(event.target.value <= 0){
+                  setValidacaoPCusto(false)
+                }
+                else{
+                  setValidacaoPCusto(true)
                 }
               }}
             />
+            {validacaoPCusto === false ? <span>Erro: O preço de custo deve ser maior que zero!</span> : "" }
           </div>
 
-          <div className="formulario">  
+          <div className="formulario-cadastro-produto">  
             <label>Margem de lucro %</label>
             <input 
               value={margem}
@@ -173,7 +192,7 @@ function CadastroProdutos() {
             />
           </div>
 
-          <div className="formulario">  
+          <div className="formulario-cadastro-produto">  
             <label>Preço de Venda</label>
             <input 
               value={precoVenda} 
@@ -188,15 +207,24 @@ function CadastroProdutos() {
               onBlur={(event) => {
                 let tmpMargem = 0
                 tmpMargem = ((precoVenda - precoCusto) / precoCusto) * 100
-                setMargem(tmpMargem.toFixed(2))
-                setPrecoVenda(event.target.value)
+                
+                if(event.target.value <= 0){
+                  setValidacaoPVenda(false)
+                }
+                else{
+                  setValidacaoPVenda(true)
+                  setMargem(tmpMargem.toFixed(2))
+                  setPrecoVenda(event.target.value)
+                }
               }}
             />
+            {validacaoPVenda === false ? <span>Erro: O preço de venda deve ser maior que zero!</span> : "" }
           </div>
 
-          <div className="formulario">          
+          <div className="formulario-cadastro-produto">          
             <label>Quantidade Estoque</label>
-            <input 
+            <input
+              value={quantidadeEstoque}
               type="number" 
               name="quantidadeEstoque" 
               placeholder="Quantidade"
@@ -204,10 +232,19 @@ function CadastroProdutos() {
               onChange={(event) => {
                 setQuantidadeEstoque(event.target.value)
               }}
+              onBlur={(event) => {
+                if(event.target.value <= 0){
+                  setValidacaoQuantidade(false)
+                }
+                else{
+                  setValidacaoQuantidade(true)
+                }
+              }}
             />
+            {validacaoQuantidade === false ? <span>Erro: A quantidade deve ser maior que zero!</span> : "" }
           </div>
 
-          <div className="formulario">          
+          <div className="formulario-cadastro-produto">          
             <label>Foto do Produto (Formato ideal quadrado)</label>
             <input 
               type="file" 
