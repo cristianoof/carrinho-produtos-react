@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bXXoCIFq9oEzIS6OZ+btC7GWZmKMpj1D5wmVCN1UAAaktbzeuNLLpY91a/07iugh5SDgIoGWrPWGNrV3jpuTKw==",
+  "dgSpecHash": "BJeE72+sQr7fOJPYYS7fNNBqI4+3jcpB8ou7cS9u3YB/kkJp7TVnCIsdhuIPt+E6aLEuFtv1gyK3VZcZeGEjGg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Cristiano\\Desktop\\Cris\\Cursos\\_Testes-Emprego\\Dev-JR\\WebApi\\WebApi\\WebApi.csproj",
+  "projectFilePath": "C:\\Users\\Cristiano\\Desktop\\Cris\\Cursos\\_Testes-Emprego\\Dev-JR\\webapi\\webapi\\WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Cristiano\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Cristiano\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
